@@ -1,4 +1,4 @@
-from auth import BearerToken, AuthorizationObject
+from api.auth import BearerToken, AuthorizationObject
 import settings
 import requests
 

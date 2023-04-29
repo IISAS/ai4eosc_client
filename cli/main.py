@@ -7,29 +7,16 @@ import settings
 from api.info import get_platform_info, get_api_version_info, get_default_deployment_conf
 from api.auth import BearerToken
 
+from info import info_impl
+
 app = typer.Typer()
 
 @app.command()
-def info(object: str = typer.Argument(default=None, help='module name for its default config, v=<number> for info about API version, or nothing for info about the platform')):
-    response = None
-    if not object:
-        response = get_platform_info(settings.AI4EOSC_PAPI_URL)
-    elif object.startswith("v="):
-        response = get_api_version_info(settings.AI4EOSC_PAPI_URL, object[2:])
-    else:
-        response = get_default_deployment_conf(
-            api_url=settings.AI4EOSC_PAPI_V1_URL,
-            module_name=object,
-            auth=BearerToken('$$$token$$$'))
-
-    if not response:
-        print('No response')
-    elif response.status_code > 299:
-        print(f'Error: status code {response.status_code}')
-    else:
-        info = response.json()
-        info_str = json.dumps(info, indent=4)
-        print(info_str)
+def info(
+        object: str = typer.Argument(default=None, help='module name for its default config, v=<number> for info about API version, or nothing for info about the platform'),
+        auth_token: str = typer.Option(default=None, help='authorization bearer token')
+        ):
+    return info_impl(object, auth_token)
 
 
 @app.command()
