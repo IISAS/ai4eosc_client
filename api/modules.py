@@ -28,6 +28,6 @@ def update_module_metadata(api_url: str, module_name: str):
 
 
 if __name__ == '__main__':
-    response = update_module_metadata(settings.AI4EOSC_PAPI_URL, 'DEEP-OC-dogs_breed_det')
+    response = update_module_metadata(settings.AI4EOSC_PAPI_V1_URL, 'DEEP-OC-dogs_breed_det')
     print(f'Status: {response.status_code}')
     print(response.text)

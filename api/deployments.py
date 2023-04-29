@@ -24,23 +24,9 @@ def delete_deployment(api_url: str, deployment_uuid: str, auth: AuthorizationObj
     ...
 
 if __name__ == '__main__':
-    egi_token = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJQVVlPaXJBM1ktZF9kR3BkajRpSkRIdzR6SGE4SVkt" \
-                "YmhaZGFFajByamJVIn0.eyJleHAiOjE2ODI3MDI0ODIsImlhdCI6MTY4MjY5ODg4MiwiYXV0aF90aW1lIjoxNjgwNzEw" \
-                "MjEyLCJqdGkiOiIzMWNmNzA5Ni1kYzgyLTQ3NzctODIxOS00OTUwYTlmYWMxNWIiLCJpc3MiOiJodHRwczovL2FhaS5l" \
-                "Z2kuZXUvYXV0aC9yZWFsbXMvZWdpIiwic3ViIjoiMDA5ZDY4Mzc5NGI1YzJhYTdjNWQ0Yzk1ZTAwMWFmMjczYjdiOTk2" \
-                "NzQ0M2RjM2I3MGY5MzE4Yjc2OWMyZjM5MUBlZ2kuZXUiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJ0b2tlbi1wb3J0YWwi" \
-                "LCJub25jZSI6ImNlMDVjZjBmMjlkZjViMWUyZTUyZTNkNTM5MjQ5NTgzIiwic2Vzc2lvbl9zdGF0ZSI6IjZiYWFkNTcy" \
-                "LWJlMWQtNDZkMy04MGEwLTcwODExYzA3NmUwNiIsInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIGVkdXBlcnNv" \
-                "bl9lbnRpdGxlbWVudCB2b3BlcnNvbl9pZCBwcm9maWxlIGVtYWlsIiwic2lkIjoiNmJhYWQ1NzItYmUxZC00NmQzLTgw" \
-                "YTAtNzA4MTFjMDc2ZTA2Iiwidm9wZXJzb25faWQiOiIwMDlkNjgzNzk0YjVjMmFhN2M1ZDRjOTVlMDAxYWYyNzNiN2I5" \
-                "OTY3NDQzZGMzYjcwZjkzMThiNzY5YzJmMzkxQGVnaS5ldSIsImF1dGhlbnRpY2F0aW5nX2F1dGhvcml0eSI6Imh0dHBz" \
-                "Oi8vYWFpLmVnaS5ldS9nb29nbGUvc2FtbDIvaWRwL21ldGFkYXRhLnBocCJ9.YOegF5CK0jWau4_BOBfyKTiskHS1-YU" \
-                "usPRbh4BLTAxUw2gqctrsaCwpXtK2VcP0dbRZSqsYMuggFsmv3yVmcx04nVUhgBjy0S4A7bz-zlBvf-vngIuFbllq1q_" \
-                "axlL9H_jSuGsE1WZW37-RdXWRAx7PNz4njDLX-RuuBfkiJZU7fssKc0o9c-OYCEUjbqguzuXsdvVUfQdqn1UPMRmcouo" \
-                "Cr_LVkDjS2mlhUUbThfMOv-sUQCzkoA_ttd5H7OIzXa_lV68gKZmXoPS8_rH0LzS5NdEIffSwBcijE_E6mF33OcDuyjO" \
-                "ajY0C4RKwcFntzNGsIAVT2gHPrOQoEErwng"
+    egi_token = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJQVVlPaXJBM1ktZF9kR3BkajRpSkRIdzR6SGE4SVktYmhaZGFFajByamJVIn0.eyJleHAiOjE2ODI3NTk2NDgsImlhdCI6MTY4Mjc1NjA0OCwiYXV0aF90aW1lIjoxNjgwNzEwMjEyLCJqdGkiOiI4YzgwZWE3Zi04OGU4LTQwZmQtYTAyZS01NTU5NmI0ZTdmNDciLCJpc3MiOiJodHRwczovL2FhaS5lZ2kuZXUvYXV0aC9yZWFsbXMvZWdpIiwic3ViIjoiMDA5ZDY4Mzc5NGI1YzJhYTdjNWQ0Yzk1ZTAwMWFmMjczYjdiOTk2NzQ0M2RjM2I3MGY5MzE4Yjc2OWMyZjM5MUBlZ2kuZXUiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJ0b2tlbi1wb3J0YWwiLCJub25jZSI6ImNlMDVjZjBmMjlkZjViMWUyZTUyZTNkNTM5MjQ5NTgzIiwic2Vzc2lvbl9zdGF0ZSI6IjZiYWFkNTcyLWJlMWQtNDZkMy04MGEwLTcwODExYzA3NmUwNiIsInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIGVkdXBlcnNvbl9lbnRpdGxlbWVudCB2b3BlcnNvbl9pZCBwcm9maWxlIGVtYWlsIiwic2lkIjoiNmJhYWQ1NzItYmUxZC00NmQzLTgwYTAtNzA4MTFjMDc2ZTA2Iiwidm9wZXJzb25faWQiOiIwMDlkNjgzNzk0YjVjMmFhN2M1ZDRjOTVlMDAxYWYyNzNiN2I5OTY3NDQzZGMzYjcwZjkzMThiNzY5YzJmMzkxQGVnaS5ldSIsImF1dGhlbnRpY2F0aW5nX2F1dGhvcml0eSI6Imh0dHBzOi8vYWFpLmVnaS5ldS9nb29nbGUvc2FtbDIvaWRwL21ldGFkYXRhLnBocCJ9.WqTx8Qy3IJLLwWsmctbc9JA9Yq8p2i-DA3WWSyVHAOfUONou5-zSc0RsU2LhZ83zGu6S0gOcMNeeszbVUl_K3zxwkpmzJUYLT-YrZP1VGfaXfuR_Vz4u46EWkBa93L7S0LpTjY7OefUFsrB6Qz5SvWLSD74SeVLmcYbyZ5pxIob8j8nBqY-z7zpZMmZvBZnVSzS7LHGk-kq8lAShZlIWGPY7RzPwmUDMNfcnVYa7wWC4oZLDGa3Bia85N-sdnBhQgc_74W4lsqQLwFQwNw32xBS4iCbjfFhDZMg_4MWwwhJA_9SHgjhHjN6fi40aesKbv1K1sgkD4eWlasLiI1QIjA"
     auth = BearerToken(egi_token)
-    response = get_deployments(settings.AI4EOSC_PAPI_URL, auth)
+    response = get_deployments(settings.AI4EOSC_PAPI_V1_URL, auth)
     print(f'Status: {response.status_code}')
     print(response.text)
 
