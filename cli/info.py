@@ -4,15 +4,15 @@ from api.info import get_platform_info, get_api_version_info, get_default_deploy
 from api.auth import BearerToken
 
 
-def info_impl(object, auth_token):
+def info_impl(object, api_url, auth_token):
     response = None
     if not object:
-        response = get_platform_info(settings.AI4EOSC_PAPI_URL)
+        response = get_platform_info(api_url)
     elif object.startswith("v="):
-        response = get_api_version_info(settings.AI4EOSC_PAPI_URL, 'v'+object[2:])
+        response = get_api_version_info(api_url, 'v'+object[2:])
     else:
         response = get_default_deployment_conf(
-            api_url=settings.AI4EOSC_PAPI_V1_URL,
+            api_url=api_url,
             module_name=object,
             auth=BearerToken(auth_token))
 

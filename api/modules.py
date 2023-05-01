@@ -1,10 +1,10 @@
 import settings
 import requests
 
-AI4EOSC_PAPI_GET_MODULES_LIST='{}/modules'
-AI4EOSC_PAPI_GET_MODULES_SUMMARY='{}/modules/summary'
-AI4EOSC_PAPI_GET_MODULE_METADATA='{}/modules/metadata/{}'
-AI4EOSC_PAPI_UPDATE_MODULE_METADATA='{}/modules/metadata/{}'
+AI4EOSC_PAPI_GET_MODULES_LIST='{}/v1/modules'
+AI4EOSC_PAPI_GET_MODULES_SUMMARY='{}/v1/modules/summary'
+AI4EOSC_PAPI_GET_MODULE_METADATA='{}/v1/modules/metadata/{}'
+AI4EOSC_PAPI_UPDATE_MODULE_METADATA='{}/v1/modules/metadata/{}'
 
 
 def get_modules_list(api_url: str):
@@ -22,12 +22,13 @@ def get_module_metadata(api_url: str, module_name: str):
     return requests.get(url)
 
 
-def update_module_metadata(api_url: str, module_name: str):
+def update_module_metadata(api_url: str, module_name: str, new_metadata: dict):
     url=AI4EOSC_PAPI_UPDATE_MODULE_METADATA.format(api_url, module_name)
-    return requests.put(url)
+    return requests.put(url, json=new_metadata)
 
 
 if __name__ == '__main__':
-    response = update_module_metadata(settings.AI4EOSC_PAPI_V1_URL, 'DEEP-OC-dogs_breed_det')
+    mm = get_module_metadata(settings.AI4EOSC_PAPI_URL, 'DEEP-OC-dogs_breed_det').json()
+    response = update_module_metadata(settings.AI4EOSC_PAPI_URL, 'DEEP-OC-dogs_breed_det', mm)
     print(f'Status: {response.status_code}')
     print(response.text)
