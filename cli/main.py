@@ -1,8 +1,6 @@
 import typer
 import settings
-import info
-from modules import modules_impl
-import deployments
+import info, modules, deployments
 
 #todo solve how to use only --version, without any command
 #todo Pouzvaj log file pre debug informacie. Dhlsie chybove spravy sa nedaju citat na konzole. V pripade staci nastavit log_file = stderr. To tiez nemam urobene pre fedcloudclient.
@@ -15,35 +13,7 @@ state = {
 app = typer.Typer(help=f"AI4EOSC command-line client, version {__version__}", no_args_is_help=True)
 app.add_typer(deployments.app, name='deployment')
 app.add_typer(info.app, name='info')
-
-@app.command()
-def modules(
-        module_name: str = typer.Argument(
-            None,
-            help='module name to query or update; leave out for list of modules or their summary'),
-        api_url: str = typer.Option(
-            settings.AI4EOSC_PAPI_URL,
-            help="AI4EOSC PAPI URL",
-            envvar=settings.envvar_AI4EOSC_PAPI_URL),
-        auth_token: str = typer.Option(
-            None,
-            '--auth-token', '-t',
-            help='authorization bearer token',
-            envvar=settings.envvar_AI4EOSC_PAPI_TOKEN),
-        summary: bool = typer.Option(
-            False,
-            '--summary', '-s',
-            help='Provide summary of modules instead of their listing'),
-        update: bool = typer.Option(
-            False,
-            '--update', '-u',
-            help='Update metadata instead of querying it'),
-        new_metadata: str = typer.Option(
-            None,
-            '--new-metadata', '-nm',
-            help='name of JSON file with new metadata, if updating module')
-        ):
-    return modules_impl(module_name, api_url, auth_token, summary, update, new_metadata)
+app.add_typer(modules.app, name='module')
 
 
 @app.callback()
