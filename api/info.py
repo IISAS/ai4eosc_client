@@ -35,7 +35,7 @@ if __name__ == '__main__':
         print(f'No or empty auth token, set env var {settings.envvar_AI4EOSC_PAPI_TOKEN}')
         exit(1)
     auth = BearerToken(egi_token)
-    response = get_default_deployment_conf(settings.AI4EOSC_PAPI_V1_URL, 'DEEP-OC-dogs_breed_det', auth)
+    response = get_default_deployment_conf(settings.AI4EOSC_PAPI_URL, 'DEEP-OC-dogs_breed_det', auth)
     print(f'Status: {response.status_code}')
     print(response.text)
 
