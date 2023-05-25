@@ -13,12 +13,12 @@ def list(
         api_url: str = typer.Option(
             settings.AI4EOSC_PAPI_URL,
             help="AI4EOSC PAPI URL",
-            envvar='AI4EOSC_PAPI_URL'),
+            envvar=settings.envvar_AI4EOSC_PAPI_URL),
         auth_token: str = typer.Option(
             None,
             '--auth-token', '-t',
             help='authorization bearer token',
-            envvar='AI4EOSC_PAPI_TOKEN')):
+            envvar=settings.envvar_AI4EOSC_PAPI_TOKEN)):
         if auth_token is not None:
             auth_object = BearerToken(auth_token)
         else:
@@ -34,12 +34,12 @@ def show(
         api_url: str = typer.Option(
             settings.AI4EOSC_PAPI_URL,
             help="AI4EOSC PAPI URL",
-            envvar='AI4EOSC_PAPI_URL'),
+            envvar=settings.envvar_AI4EOSC_PAPI_URL),
         auth_token: str = typer.Option(
             None,
             '--auth-token', '-t',
             help='authorization bearer token',
-            envvar='AI4EOSC_PAPI_TOKEN')):
+            envvar=settings.envvar_AI4EOSC_PAPI_TOKEN)):
     if auth_token is not None:
         auth_object = BearerToken(auth_token)
     else:
@@ -56,12 +56,12 @@ def create(
         api_url: str = typer.Option(
             settings.AI4EOSC_PAPI_URL,
             help="AI4EOSC PAPI URL",
-            envvar='AI4EOSC_PAPI_URL'),
+            envvar=settings.envvar_AI4EOSC_PAPI_URL),
         auth_token: str = typer.Option(
             None,
             '--auth-token', '-t',
             help='authorization bearer token',
-            envvar='AI4EOSC_PAPI_TOKEN')):
+            envvar=settings.envvar_AI4EOSC_PAPI_TOKEN)):
     if auth_token is not None:
         auth_object = BearerToken(auth_token)
     else:
@@ -85,12 +85,12 @@ def delete(
         api_url: str = typer.Option(
             settings.AI4EOSC_PAPI_URL,
             help="AI4EOSC PAPI URL",
-            envvar='AI4EOSC_PAPI_URL'),
+            envvar=settings.envvar_AI4EOSC_PAPI_URL),
         auth_token: str = typer.Option(
             None,
             '--auth-token', '-t',
             help='authorization bearer token',
-            envvar='AI4EOSC_PAPI_TOKEN')):
+            envvar=settings.envvar_AI4EOSC_PAPI_TOKEN)):
     if auth_token is not None:
         auth_object = BearerToken(auth_token)
     else:

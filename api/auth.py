@@ -1,3 +1,4 @@
+import os, settings
 class AuthorizationObject:
     '''
     Abstract authorization object. Will apply authorization to a API call
@@ -24,5 +25,9 @@ class BearerToken(AuthorizationObject):
 
 
 if __name__ == '__main__':
-    auth = BearerToken('###bearertoken###')
+    egi_token = os.environ.get(settings.envvar_AI4EOSC_PAPI_TOKEN)
+    if (egi_token is None) or (len(egi_token) == 0):
+        print(f'No or empty auth token, set env var {settings.envvar_AI4EOSC_PAPI_TOKEN}')
+        exit(1)
+    auth = BearerToken(egi_token)
     print(auth.apply_authorization())
