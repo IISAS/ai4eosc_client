@@ -1,8 +1,12 @@
 import typer
-import info, modules, deployments
+import info, modules, deployments, settings
+import logging
+from logsetup import start_log
+
+
+logger = logging.getLogger(settings.logName)
 
 # todo solve how to use only --version, without any command
-# todo Pouzvaj log file pre debug informacie. Dhlsie chybove spravy sa nedaju citat na konzole. V pripade staci nastavit log_file=stderr. To tiez nemam urobene pre fedcloudclient.
 
 __version__ = "0.3.0"
 state = {"verbose": False}
@@ -28,4 +32,5 @@ def main(version: bool = typer.Option(None, "--version", "-v", help='display ver
 
 
 if __name__ == "__main__":
+    start_log()
     app()

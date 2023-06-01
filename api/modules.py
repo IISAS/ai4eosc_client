@@ -1,6 +1,9 @@
 import settings
 import requests
+import logging
 
+
+logger = logging.getLogger(settings.logName)
 AI4EOSC_PAPI_GET_MODULES_LIST = '{}/v1/modules'
 AI4EOSC_PAPI_GET_MODULES_SUMMARY = '{}/v1/modules/summary'
 AI4EOSC_PAPI_GET_MODULE_METADATA = '{}/v1/modules/metadata/{}'

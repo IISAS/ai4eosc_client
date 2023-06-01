@@ -1,6 +1,12 @@
 from urllib.parse import urlencode
 from requests import Response
 import json
+import settings
+import logging
+
+
+logger = logging.getLogger(settings.logName)
+
 
 
 def encode_url(url, **kwargs):

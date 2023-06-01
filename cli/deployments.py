@@ -4,8 +4,10 @@ from api.auth import BearerToken
 from api.deployments import get_deployments, get_deployment, create_deployment, delete_deployment
 from api.tools import show_response
 import settings
+import logging
 
 
+logger = logging.getLogger(settings.logName)
 app = typer.Typer()
 
 

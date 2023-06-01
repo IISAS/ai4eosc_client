@@ -2,7 +2,10 @@ import os
 from .auth import AuthorizationObject, BearerToken
 import requests
 import settings
+import logging
 
+
+logger = logging.getLogger(settings.logName)
 AI4EOSC_PAPI_GET_DEPLOYMENTS = '{}/v1/deployments/'
 AI4EOSC_PAPI_CREATE_DEPLOYMENT = '{}/v1/deployments/'
 AI4EOSC_PAPI_GET_DEPLOYMENT = '{}/v1/deployments/{}'

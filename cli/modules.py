@@ -1,8 +1,10 @@
 from api.modules import get_modules_list, get_modules_summary, get_module_metadata, update_module_metadata
 from api.tools import show_response
 import json, typer, settings
+import logging
 
 
+logger = logging.getLogger(settings.logName)
 app = typer.Typer()
 
 

@@ -2,7 +2,10 @@ from api.auth import BearerToken, AuthorizationObject
 import settings
 import requests
 import os
+import logging
 
+
+logger = logging.getLogger(settings.logName)
 AI4EOSC_PAPI_GET_DEFAULT_DEPLOYMENT_CONF = '{}/v1/info/conf/{}'
 AI4EOSC_PAPI_GET_PLATFORM_INFO = '{}'
 AI4EOSC_PAPI_GET_API_VERSION_INFO = '{}/{}'
