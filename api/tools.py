@@ -8,7 +8,6 @@ import logging
 logger = logging.getLogger(settings.logName)
 
 
-
 def encode_url(url, **kwargs):
     """
     Encode a URL with parameters

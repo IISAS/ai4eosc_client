@@ -55,6 +55,7 @@ class BearerToken(AuthorizationObject):
 
 if __name__ == '__main__':
     from logsetup import start_log
+
     start_log()
     egi_token = os.environ.get(settings.envvar_AI4EOSC_PAPI_TOKEN)
     if (egi_token is None) or (len(egi_token) == 0):
