@@ -42,4 +42,3 @@ if __name__ == '__main__':
     response = get_deployments(settings.AI4EOSC_PAPI_URL, auth)
     print(f'Status: {response.status_code}')
     print(response.text)
-

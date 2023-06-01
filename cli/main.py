@@ -15,8 +15,7 @@ app.add_typer(modules.app, name='module')
 
 
 @app.callback()
-def main(
-        version: bool = typer.Option(None, "--version", "-v", help='display version and exit', is_eager=True), verbose: bool = False):
+def main(version: bool = typer.Option(None, "--version", "-v", help='display version and exit', is_eager=True), verbose: bool = False):
     """
     Manage users in the awesome CLI app.
     """
