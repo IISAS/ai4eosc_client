@@ -1,4 +1,4 @@
 # ai4eosc_client
 
-[![GitHub Super-Linter](https://github.com/IISAS/ai4eosc_client/workflows/lint.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter](https://github.com/IISAS/ai4eosc_client/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/marketplace/actions/super-linter)
 
