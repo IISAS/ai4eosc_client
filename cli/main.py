@@ -2,13 +2,11 @@ import typer
 import settings
 import info, modules, deployments
 
-#todo solve how to use only --version, without any command
-#todo Pouzvaj log file pre debug informacie. Dhlsie chybove spravy sa nedaju citat na konzole. V pripade staci nastavit log_file = stderr. To tiez nemam urobene pre fedcloudclient.
+# todo solve how to use only --version, without any command
+# todo Pouzvaj log file pre debug informacie. Dhlsie chybove spravy sa nedaju citat na konzole. V pripade staci nastavit log_file = stderr. To tiez nemam urobene pre fedcloudclient.
 
-__version__ = '0.3.0'
-state = {
-    'verbose': False
-}
+__version__ = "0.3.0"
+state = {"verbose": False}
 
 app = typer.Typer(help=f"AI4EOSC command-line client, version {__version__}", no_args_is_help=True)
 app.add_typer(deployments.app, name='deployment')

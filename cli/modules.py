@@ -1,10 +1,10 @@
-from api.auth import BearerToken
 from api.modules import get_modules_list, get_modules_summary, get_module_metadata, update_module_metadata
 from api.tools import show_response
 import json, typer, settings
 
 
 app = typer.Typer()
+
 
 @app.command()
 def list_modules(
@@ -61,7 +61,6 @@ def cli_list_modules(api_url):
     show_response(response)
 
 
-
 def cli_modules_summary(api_url):
     response = get_modules_summary(api_url)
     show_response(response)
@@ -70,7 +69,6 @@ def cli_modules_summary(api_url):
 def cli_show_module(api_url, module_name):
     response = get_module_metadata(api_url, module_name)
     show_response(response)
-
 
 
 def cli_update_module(api_url, module_name, new_metadata):
