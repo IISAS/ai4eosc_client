@@ -1,13 +1,12 @@
 import os
-
 from .auth import AuthorizationObject, BearerToken
 import requests
 import settings
 
-AI4EOSC_PAPI_GET_DEPLOYMENTS='{}/v1/deployments/'
-AI4EOSC_PAPI_CREATE_DEPLOYMENT='{}/v1/deployments/'
-AI4EOSC_PAPI_GET_DEPLOYMENT='{}/v1/deployments/{}'
-AI4EOSC_PAPI_DELETE_DEPLOYMENT='{}/v1/deployments/{}'
+AI4EOSC_PAPI_GET_DEPLOYMENTS = '{}/v1/deployments/'
+AI4EOSC_PAPI_CREATE_DEPLOYMENT = '{}/v1/deployments/'
+AI4EOSC_PAPI_GET_DEPLOYMENT = '{}/v1/deployments/{}'
+AI4EOSC_PAPI_DELETE_DEPLOYMENT = '{}/v1/deployments/{}'
 
 
 def get_deployments(api_url: str, auth: AuthorizationObject):

@@ -2,14 +2,16 @@ from urllib.parse import urlencode
 from requests import Response
 import json
 
+
 def encode_url(url, **kwargs):
-    '''
+    """
     Encode a URL with parameters
     :param url: the base URL
     :param kwargs: an arbitrary dictionary of keys and values which will be encoded in key=value form into the URL
     :return: a fully encoded URL usable for HTTP.GET
-    '''
+    """
     return f'{url}?{urlencode(kwargs)}'
+
 
 def show_response(response: Response):
     if response is None:

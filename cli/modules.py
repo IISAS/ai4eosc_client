@@ -8,50 +8,31 @@ app = typer.Typer()
 
 @app.command()
 def list_modules(
-        api_url: str = typer.Option(
-            settings.AI4EOSC_PAPI_URL,
-            help="AI4EOSC PAPI URL",
-            envvar=settings.envvar_AI4EOSC_PAPI_URL)
+        api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL)
 ):
     cli_list_modules(api_url)
 
 
 @app.command()
 def modules_summary(
-        api_url: str = typer.Option(
-            settings.AI4EOSC_PAPI_URL,
-            help="AI4EOSC PAPI URL",
-            envvar=settings.envvar_AI4EOSC_PAPI_URL)
+        api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL)
 ):
     cli_modules_summary(api_url)
 
 
 @app.command()
 def show_module(
-        module_name: str = typer.Option(
-            None,
-            help='module name to query'),
-        api_url: str = typer.Option(
-            settings.AI4EOSC_PAPI_URL,
-            help="AI4EOSC PAPI URL",
-            envvar=settings.envvar_AI4EOSC_PAPI_URL)
+        module_name: str = typer.Option(None, help='module name to query'),
+        api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL)
 ):
     cli_show_module(api_url, module_name)
 
 
 @app.command()
 def update_module(
-        module_name: str = typer.Option(
-            None,
-            help='module name to query'),
-        api_url: str = typer.Option(
-            settings.AI4EOSC_PAPI_URL,
-            help="AI4EOSC PAPI URL",
-            envvar=settings.envvar_AI4EOSC_PAPI_URL),
-        new_metadata: str = typer.Option(
-            None,
-            '--new-metadata', '-nm',
-            help='name of JSON file with new metadata')
+        module_name: str = typer.Option(None, help='module name to query'),
+        api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL),
+        new_metadata: str = typer.Option(None, '--new-metadata', '-nm', help='name of JSON file with new metadata')
 ):
     cli_update_module(api_url, module_name, new_metadata)
 
@@ -83,7 +64,3 @@ def cli_update_module(api_url, module_name, new_metadata):
 
     response = update_module_metadata(api_url, module_name, nm_dict)
     show_response(response)
-
-
-
-
