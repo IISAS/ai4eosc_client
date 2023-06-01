@@ -1,0 +1,30 @@
+---
+name: Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  super-lint:
+    name: Lint with Super-Linter
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Runs the Super-Linter action
+      - name: Run Super-Linter on new changes
+        uses: super-linter/super-linter@v4
+        env:
+          DEFAULT_BRANCH: main
+          VALIDATE_PYTHON_ISORT: false
+          VALIDATE_PYTHON_MYPY: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Fail on errors
+          DISABLE_ERRORS: false
