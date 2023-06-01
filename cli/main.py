@@ -1,9 +1,8 @@
 import typer
-import settings
 import info, modules, deployments
 
 # todo solve how to use only --version, without any command
-# todo Pouzvaj log file pre debug informacie. Dhlsie chybove spravy sa nedaju citat na konzole. V pripade staci nastavit log_file = stderr. To tiez nemam urobene pre fedcloudclient.
+# todo Pouzvaj log file pre debug informacie. Dhlsie chybove spravy sa nedaju citat na konzole. V pripade staci nastavit log_file=stderr. To tiez nemam urobene pre fedcloudclient.
 
 __version__ = "0.3.0"
 state = {"verbose": False}
