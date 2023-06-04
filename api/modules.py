@@ -8,15 +8,21 @@ AI4EOSC_PAPI_GET_MODULES_LIST = '{}/v1/modules'
 AI4EOSC_PAPI_GET_MODULES_SUMMARY = '{}/v1/modules/summary'
 AI4EOSC_PAPI_GET_MODULE_METADATA = '{}/v1/modules/metadata/{}'
 AI4EOSC_PAPI_UPDATE_MODULE_METADATA = '{}/v1/modules/metadata/{}'
+AI4EOSC_PAPI_UPDATE_MODULE_TAGS = '{}/v1/modules/tags'
 
 
-def get_modules_list(api_url: str):
+def get_modules_list(api_url: str, tags: list, tags_any: list, not_tags: list, not_tags_any: list):
     url = AI4EOSC_PAPI_GET_MODULES_LIST.format(api_url)
-    return requests.get(url)
+    return requests.get(url, params={'tags': tags, 'tags_any': tags_any, 'not_tags': not_tags, 'not_tags_any': not_tags_any})
 
 
-def get_modules_summary(api_url: str):
+def get_modules_summary(api_url: str, tags: list, tags_any: list, not_tags: list, not_tags_any: list):
     url = AI4EOSC_PAPI_GET_MODULES_SUMMARY.format(api_url)
+    return requests.get(url, params={'tags': tags, 'tags_any': tags_any, 'not_tags': not_tags, 'not_tags_any': not_tags_any})
+
+
+def get_tags(api_url: str):
+    url = AI4EOSC_PAPI_UPDATE_MODULE_TAGS.format(api_url)
     return requests.get(url)
 
 

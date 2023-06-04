@@ -7,7 +7,7 @@ import logging
 
 
 logger = logging.getLogger(settings.logName)
-app = typer.Typer()
+app = typer.Typer(help='Show information about the platform, API or default deployment.')
 
 
 @app.command()

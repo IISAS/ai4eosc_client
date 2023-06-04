@@ -9,7 +9,7 @@ from typing import List
 
 
 logger = logging.getLogger(settings.logName)
-app = typer.Typer()
+app = typer.Typer(help='Access deployments - list existing, show their info, create new or delete existing.')
 
 
 @app.command()
@@ -68,7 +68,6 @@ def delete(
     api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL),
     auth_token: str = typer.Option(None, '--auth-token', '-t', help='authorization bearer token', envvar=settings.envvar_AI4EOSC_PAPI_TOKEN),
     vo: str = typer.Option(None, '--vo', help='name of the VO where the deployment is located', envvar=settings.envvar_AI4EOSC_DEFAULT_VO),
-
 ):
     if auth_token is not None:
         auth_object = BearerToken(auth_token)
