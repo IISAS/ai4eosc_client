@@ -39,7 +39,6 @@ def modules_summary(
     tags_any: Optional[List[str]] = typer.Option(None, '--tags-any'),
     not_tags: Optional[List[str]] = typer.Option(None, '--not-tags'),
     not_tags_any: Optional[List[str]] = typer.Option(None, '--not-tags-any'),
-
 ):
     split_tags = []
     for tag in tags:
