@@ -12,10 +12,10 @@ AI4EOSC_PAPI_GET_DEPLOYMENT = '{}/v1/deployments/{}'
 AI4EOSC_PAPI_DELETE_DEPLOYMENT = '{}/v1/deployments/{}'
 
 
-def get_deployments(api_url: str, auth: AuthorizationObject):
+def get_deployments(api_url: str, auth: AuthorizationObject, vos: list):
     headers = auth.apply_authorization()
     url = AI4EOSC_PAPI_GET_DEPLOYMENTS.format(api_url)
-    return requests.get(url, headers=headers)
+    return requests.get(url, headers=headers, params={'vos': vos})
 
 
 def get_deployment(api_url: str, deployment_uuid: str, auth: AuthorizationObject):
@@ -24,16 +24,16 @@ def get_deployment(api_url: str, deployment_uuid: str, auth: AuthorizationObject
     return requests.get(url, headers=headers)
 
 
-def create_deployment(api_url: str, conf: dict, auth: AuthorizationObject):
+def create_deployment(api_url: str, conf: dict, auth: AuthorizationObject, vo: str):
     headers = auth.apply_authorization()
     url = AI4EOSC_PAPI_CREATE_DEPLOYMENT.format(api_url)
-    return requests.post(url, headers=headers, json=conf)
+    return requests.post(url, headers=headers, json=conf, params={'vo': vo})
 
 
-def delete_deployment(api_url: str, deployment_uuid: str, auth: AuthorizationObject):
+def delete_deployment(api_url: str, deployment_uuid: str, auth: AuthorizationObject, vo: str):
     headers = auth.apply_authorization()
     url = AI4EOSC_PAPI_DELETE_DEPLOYMENT.format(api_url, deployment_uuid)
-    return requests.delete(url, headers=headers)
+    return requests.delete(url, headers=headers, params={'vo': vo})
 
 
 if __name__ == '__main__':
