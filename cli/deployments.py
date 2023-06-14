@@ -19,12 +19,11 @@ def list(
     auth_token: str = typer.Option(None, '--auth-token', '-t', help='authorization bearer token', envvar=settings.envvar_AI4EOSC_PAPI_TOKEN),
     vos: List[str] = typer.Option(None, '--vo', help='user\'s vo to use, can be used multiple times'),
     oidc_account: str = typer.Option(None, '--oidc-agent-account', help='Account name in oidc-agent', envvar=settings.envvar_OIDC_AGENT_ACCOUNT),
-    oidc_token: str = typer.Option(None, '--oidc-access-token', help='OIDC access token', envvar=settings.envvar_OIDC_ACCESS_TOKEN),
     mytoken: str = typer.Option(None, '--mytoken', help='mytoken string', envvar=settings.envvar_AI4EOSC_MYTOKEN),
     mytoken_server: str = typer.Option(None, '--mytoken-server', help='mytoken server URL', envvar=settings.envvar_AI4EOSC_MYTOKEN_SERVER),
 ):
     if auth_token is None:
-        auth_token = auth.get_access_token(oidc_token, oidc_account, mytoken, mytoken_server)
+        auth_token = auth.get_access_token(oidc_account, mytoken, mytoken_server)
     if auth_token is not None:
         auth_object = BearerToken(auth_token)
     else:
@@ -39,12 +38,11 @@ def show(
     api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL),
     auth_token: str = typer.Option(None, '--auth-token', '-t', help='authorization bearer token', envvar=settings.envvar_AI4EOSC_PAPI_TOKEN),
     oidc_account: str = typer.Option(None, '--oidc-agent-account', help='Account name in oidc-agent', envvar=settings.envvar_OIDC_AGENT_ACCOUNT),
-    oidc_token: str = typer.Option(None, '--oidc-access-token', help='OIDC access token', envvar=settings.envvar_OIDC_ACCESS_TOKEN),
     mytoken: str = typer.Option(None, '--mytoken', help='mytoken string', envvar=settings.envvar_AI4EOSC_MYTOKEN),
     mytoken_server: str = typer.Option(None, '--mytoken-server', help='mytoken server URL', envvar=settings.envvar_AI4EOSC_MYTOKEN_SERVER),
 ):
     if auth_token is None:
-        auth_token = auth.get_access_token(oidc_token, oidc_account, mytoken, mytoken_server)
+        auth_token = auth.get_access_token(oidc_account, mytoken, mytoken_server)
     if auth_token is not None:
         auth_object = BearerToken(auth_token)
     else:
@@ -60,12 +58,11 @@ def create(
     auth_token: str = typer.Option(None, '--auth-token', '-t', help='authorization bearer token', envvar=settings.envvar_AI4EOSC_PAPI_TOKEN),
     vo: str = typer.Option(None, '--vo', help='name of the VO for the new deployment', envvar=settings.envvar_AI4EOSC_DEFAULT_VO),
     oidc_account: str = typer.Option(None, '--oidc-agent-account', help='Account name in oidc-agent', envvar=settings.envvar_OIDC_AGENT_ACCOUNT),
-    oidc_token: str = typer.Option(None, '--oidc-access-token', help='OIDC access token', envvar=settings.envvar_OIDC_ACCESS_TOKEN),
     mytoken: str = typer.Option(None, '--mytoken', help='mytoken string', envvar=settings.envvar_AI4EOSC_MYTOKEN),
     mytoken_server: str = typer.Option(None, '--mytoken-server', help='mytoken server URL', envvar=settings.envvar_AI4EOSC_MYTOKEN_SERVER),
 ):
     if auth_token is None:
-        auth_token = auth.get_access_token(oidc_token, oidc_account, mytoken, mytoken_server)
+        auth_token = auth.get_access_token(oidc_account, mytoken, mytoken_server)
     if auth_token is not None:
         auth_object = BearerToken(auth_token)
     else:
@@ -88,12 +85,11 @@ def delete(
     auth_token: str = typer.Option(None, '--auth-token', '-t', help='authorization bearer token', envvar=settings.envvar_AI4EOSC_PAPI_TOKEN),
     vo: str = typer.Option(None, '--vo', help='name of the VO where the deployment is located', envvar=settings.envvar_AI4EOSC_DEFAULT_VO),
     oidc_account: str = typer.Option(None, '--oidc-agent-account', help='Account name in oidc-agent', envvar=settings.envvar_OIDC_AGENT_ACCOUNT),
-    oidc_token: str = typer.Option(None, '--oidc-access-token', help='OIDC access token', envvar=settings.envvar_OIDC_ACCESS_TOKEN),
     mytoken: str = typer.Option(None, '--mytoken', help='mytoken string', envvar=settings.envvar_AI4EOSC_MYTOKEN),
     mytoken_server: str = typer.Option(None, '--mytoken-server', help='mytoken server URL', envvar=settings.envvar_AI4EOSC_MYTOKEN_SERVER),
 ):
     if auth_token is None:
-        auth_token = auth.get_access_token(oidc_token, oidc_account, mytoken, mytoken_server)
+        auth_token = auth.get_access_token(oidc_account, mytoken, mytoken_server)
     if auth_token is not None:
         auth_object = BearerToken(auth_token)
     else:

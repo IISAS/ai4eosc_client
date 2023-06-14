@@ -1,50 +1,14 @@
 import logging
 import settings
-import re
-import time
-from datetime import datetime
-import jwt
 import liboidcagent as agent
 import requests
 
 logger = logging.getLogger(settings.logName)
 
 
-# todo fix to match AI4EOSC
-VO_PATTERN = "urn:mace:egi.eu:group:(.+?):(.+:)*role=member#aai.egi.eu"
-
-
-def decode_token(oidc_access_token):
-    """
-    Decoding access token to a dict
-    :param oidc_access_token:
-    :return: dict with token info
-    """
-    try:
-        payload = jwt.decode(oidc_access_token, options={"verify_signature": False})
-    except jwt.exceptions.InvalidTokenError:
-        logger.error('decode_token: invalid access token')
-        return None
-    return payload
-
-
-def oidc_discover(oidc_url):
-    """
-    Discover OIDC endpoints
-
-    :param oidc_url: CheckIn URL
-
-    :return: JSON object of OIDC configuration
-    """
-    request = requests.get(oidc_url + "/.well-known/openid-configuration")
-    request.raise_for_status()
-    return request.json()
-
-
 def get_token_from_oidc_agent(oidc_agent_account):
     """
     Get access token from oidc-agent
-    :param quiet:
     :param oidc_agent_account: account name in oidc-agent
     :return: access token, or None on error
     """
@@ -58,15 +22,15 @@ def get_token_from_oidc_agent(oidc_agent_account):
     return None
 
 
-def get_token_from_mytoken_server(mytoken, mytoken_server):
+def get_token_from_mytoken_server(mytoken, mytoken_server=settings.mytoken_default_server):
     """
     Get access token from mytoken server
-    :param mytoken:
-    :param mytoken_server:
+    :param mytoken: mytoken id string
+    :param mytoken_server: mytoken server URL
     :return: access token, or None on error
     """
 
-    if mytoken:
+    if mytoken and mytoken_server:
         try:
             data = {
                 "grant_type": "mytoken",
@@ -83,116 +47,36 @@ def get_token_from_mytoken_server(mytoken, mytoken_server):
     return None
 
 
-def check_token(oidc_token, verbose=False):
-    """
-    Check validity of access token
-
-    :param verbose:
-    :param oidc_token: the token to check
-    :return: access token, or None on error
-    """
-
-    payload = decode_token(oidc_token)
-    if payload is None:
-        return None
-
-    exp_timestamp = int(payload["exp"])
-    current_timestamp = int(time.time())
-    exp_time_in_sec = exp_timestamp - current_timestamp
-
-    if exp_time_in_sec < settings.MIN_ACCESS_TOKEN_TIME:
-        logger.error('check_token: expired token')
-        return None
-
-    if verbose:
-        exp_time_str = datetime.utcfromtimestamp(exp_timestamp).strftime("%Y-%m-%d %H:%M:%S")
-        print(f"Token is valid until {exp_time_str} UTC")
-        if exp_time_in_sec < 24 * 3600:
-            print(f"Token expires in {exp_time_in_sec} seconds")
-        else:
-            exp_time_in_days = exp_time_in_sec // (24 * 3600)
-            print(f"Token expires in {exp_time_in_days} days")
-
-    return oidc_token
-
-
-def get_checkin_id(
-    oidc_token,
-):
-    """
-    Get EGI Check-in ID from access token
-
-    :param oidc_token: the token
-
-    :return: Check-in ID
-    """
-    payload = decode_token(oidc_token)
-    if payload is None:
-        return None
-    return payload["sub"]
-
-
 def get_access_token(
-    oidc_access_token,
     oidc_agent_account,
     mytoken,
     mytoken_server,
 ):
     """
-    Get access token
-    Generates new access token from oidc-agent
-    or mytoken
+    Get access token: obtains access token from oidc-agent or mytoken
 
     Check expiration time of access token
-    Raise error if no valid token exists
+    Log error if no valid token exists
 
-    :param oidc_access_token:
-    :param oidc_agent_account:
-    :param mytoken:
-    :param mytoken_server:
+    :param oidc_agent_account: name of the oidc-agent account to use
+    :param mytoken: mytoken id string
+    :param mytoken_server: mytoken server URL
     :return: access token
     """
 
-    access_token = None
+    try:
+        access_token = None
 
-    # access token via parameter has the highest priority
-    if oidc_access_token:
-        access_token = check_token(oidc_access_token)
+        if mytoken:
+            access_token = get_token_from_mytoken_server(mytoken, mytoken_server)
 
-    # then try to get access token from mytoken server
-    if mytoken and access_token is None:
-        access_token = get_token_from_mytoken_server(mytoken, mytoken_server)
+        if oidc_agent_account and access_token is None:
+            access_token = get_token_from_oidc_agent(oidc_agent_account)
 
-    # then, try to get access token from oidc-agent
-    if oidc_agent_account and access_token is None:
-        access_token = get_token_from_oidc_agent(oidc_agent_account)
+        if access_token is None:
+            logger.warning('get_access_token: could not get any access token from mytoken or oidc-agent')
 
-    if access_token is None:
-        logger.warning('get_access_token: could not get any access token')
-
-    return access_token
-
-
-def token_list_vos(oidc_access_token):
-    """
-    List VO memberships in EGI Check-in
-
-    :param oidc_access_token:
-
-    :return: list of VO names
-    """
-    oidc_url = decode_token(oidc_access_token)["iss"]
-    oidc_ep = oidc_discover(oidc_url)
-    request = requests.get(
-        oidc_ep["userinfo_endpoint"],
-        headers={"Authorization": f"Bearer {oidc_access_token}"},
-    )
-
-    request.raise_for_status()
-    vos = set()
-    pattern = re.compile(VO_PATTERN)
-    for claim in request.json().get("eduperson_entitlement", []):
-        vo = pattern.match(claim)
-        if vo:
-            vos.add(vo.groups()[0])
-    return sorted(vos)
+        return access_token
+    except Exception as e:
+        logger.error(f'get_access_token: exception: {str(e)}')
+        return None

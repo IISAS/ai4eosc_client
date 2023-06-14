@@ -10,3 +10,4 @@ application_hint = 'ai4eosc_client'
 MIN_ACCESS_TOKEN_TIME = 30  # minimum token time is 30 sec
 logName = 'ai4eosc_client'
 apiLogFormat = '%(levelname)-8s %(name)-12s %(asctime)s %(message)s'
+mytoken_default_server=None
