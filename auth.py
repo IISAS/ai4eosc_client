@@ -51,11 +51,7 @@ def get_token_from_oidc_agent(oidc_agent_account):
 
     if oidc_agent_account:
         try:
-            access_token = agent.get_access_token(
-                oidc_agent_account,
-                min_valid_period=settings.MIN_ACCESS_TOKEN_TIME,
-                application_hint=settings.application_hint
-            )
+            access_token = agent.get_access_token(oidc_agent_account, min_valid_period=settings.MIN_ACCESS_TOKEN_TIME, application_hint=settings.application_hint)
             return access_token
         except agent.OidcAgentError as exception:
             logger.error(f'oidc_agent_account: Error getting access token from oidc-agent: {exception}')
@@ -109,9 +105,7 @@ def check_token(oidc_token, verbose=False):
         return None
 
     if verbose:
-        exp_time_str = datetime.utcfromtimestamp(exp_timestamp).strftime(
-            "%Y-%m-%d %H:%M:%S"
-        )
+        exp_time_str = datetime.utcfromtimestamp(exp_timestamp).strftime("%Y-%m-%d %H:%M:%S")
         print(f"Token is valid until {exp_time_str} UTC")
         if exp_time_in_sec < 24 * 3600:
             print(f"Token expires in {exp_time_in_sec} seconds")
