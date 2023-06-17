@@ -5,7 +5,7 @@
 
 
 # ai4os_client
-This command line interface (CLI) provides access to the functions of the [AI4OS platform API (PAPI)](https://github.com/AI4EOSC/ai4-papi#readme).
+This command-line interface (CLI) provides access to the functions of the [AI4OS platform API (PAPI)](https://github.com/AI4EOSC/ai4-papi#readme).
 
 [![GitHub Super-Linter](https://github.com/IISAS/ai4eosc_client/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/marketplace/actions/super-linter)
 [![Tox](https://github.com/IISAS/ai4eosc_client/actions/workflows/tox.yml/badge.svg?branch=main)](https://tox.wiki/en/latest/)
