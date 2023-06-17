@@ -2,13 +2,15 @@
 |----------------------------------|------------------------------------------------------------------------------------------------------------------|
 | ![](EN-Funded by the EU-POS.jpg) | This work is funded by European Union through the AI4EOSC project (Horizon Europe) under Grant number 101058593. |
 
-
-
-# ai4os_client
-This command-line interface (CLI) provides access to the functions of the [AI4OS platform API (PAPI)](https://github.com/AI4EOSC/ai4-papi#readme).
-
 [![GitHub Super-Linter](https://github.com/IISAS/ai4eosc_client/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/marketplace/actions/super-linter)
 [![Tox](https://github.com/IISAS/ai4eosc_client/actions/workflows/tox.yml/badge.svg?branch=main)](https://tox.wiki/en/latest/)
+
+<div align="center">
+  <img src="https://ai4eosc.eu/wp-content/uploads/sites/10/2022/09/horizontal-transparent.png" alt="logo" width="500"/>
+</div>
+
+# AI4OS Command-line client - ai4os-client
+This command-line interface (CLI) provides access to the functions of the [AI4OS platform API (PAPI)](https://github.com/AI4EOSC/ai4-papi#readme).
 
 ## Basic Usage
 The CLI mimics the logical division of functions of the AI4OS PAPI into three main groups (commands):
