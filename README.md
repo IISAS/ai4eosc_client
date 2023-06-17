@@ -1,3 +1,5 @@
+# AI4OS Command-line client - ai4os-client
+
 |                                  |                                                                                                                  |
 |----------------------------------|------------------------------------------------------------------------------------------------------------------|
 | ![](EN-Funded by the EU-POS.jpg) | This work is funded by European Union through the AI4EOSC project (Horizon Europe) under Grant number 101058593. |
@@ -9,7 +11,6 @@
   <img src="https://ai4eosc.eu/wp-content/uploads/sites/10/2022/09/horizontal-transparent.png" alt="logo" width="500"/>
 </div>
 
-# AI4OS Command-line client - ai4os-client
 This command-line interface (CLI) provides access to the functions of the [AI4OS platform API (PAPI)](https://github.com/AI4EOSC/ai4-papi#readme).
 
 ## Basic Usage
