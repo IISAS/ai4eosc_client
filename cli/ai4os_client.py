@@ -11,7 +11,7 @@ logger = logging.getLogger(settings.logName)
 __version__ = "0.3.0"
 state = {"verbose": False}
 
-app = typer.Typer(help=f"AI4EOSC command-line client, version {__version__}", no_args_is_help=True)
+app = typer.Typer(name="ai4os_client", help=f"AI4OS command-line client, version {__version__}", no_args_is_help=True)
 app.add_typer(deployments.app, name='deployment')
 app.add_typer(info.app, name='info')
 app.add_typer(modules.app, name='module')

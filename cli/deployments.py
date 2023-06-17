@@ -22,6 +22,9 @@ def list(
     mytoken: str = typer.Option(None, '--mytoken', help='mytoken string', envvar=settings.envvar_AI4EOSC_MYTOKEN),
     mytoken_server: str = typer.Option(None, '--mytoken-server', help='mytoken server URL', envvar=settings.envvar_AI4EOSC_MYTOKEN_SERVER),
 ):
+    """
+    List existing deployments.
+    """
     if auth_token is None:
         auth_token = auth.get_access_token(oidc_account, mytoken, mytoken_server)
     if auth_token is not None:
@@ -41,6 +44,9 @@ def show(
     mytoken: str = typer.Option(None, '--mytoken', help='mytoken string', envvar=settings.envvar_AI4EOSC_MYTOKEN),
     mytoken_server: str = typer.Option(None, '--mytoken-server', help='mytoken server URL', envvar=settings.envvar_AI4EOSC_MYTOKEN_SERVER),
 ):
+    """
+    Show information about a deployment, identified by its UUID.
+    """
     if auth_token is None:
         auth_token = auth.get_access_token(oidc_account, mytoken, mytoken_server)
     if auth_token is not None:
@@ -61,6 +67,9 @@ def create(
     mytoken: str = typer.Option(None, '--mytoken', help='mytoken string', envvar=settings.envvar_AI4EOSC_MYTOKEN),
     mytoken_server: str = typer.Option(None, '--mytoken-server', help='mytoken server URL', envvar=settings.envvar_AI4EOSC_MYTOKEN_SERVER),
 ):
+    """
+    Create a new deployment.
+    """
     if auth_token is None:
         auth_token = auth.get_access_token(oidc_account, mytoken, mytoken_server)
     if auth_token is not None:
@@ -88,6 +97,9 @@ def delete(
     mytoken: str = typer.Option(None, '--mytoken', help='mytoken string', envvar=settings.envvar_AI4EOSC_MYTOKEN),
     mytoken_server: str = typer.Option(None, '--mytoken-server', help='mytoken server URL', envvar=settings.envvar_AI4EOSC_MYTOKEN_SERVER),
 ):
+    """
+    Delete an existing deployment.
+    """
     if auth_token is None:
         auth_token = auth.get_access_token(oidc_account, mytoken, mytoken_server)
     if auth_token is not None:

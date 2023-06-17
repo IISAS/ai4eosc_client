@@ -17,12 +17,22 @@ def default_deployment(
     api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL),
     auth_token: str = typer.Option(None, '--auth-token', '-t', help='authorization bearer token', envvar=settings.envvar_AI4EOSC_PAPI_TOKEN),
     oidc_account: str = typer.Option(None, '--oidc-agent-account', help='Account name in oidc-agent', envvar=settings.envvar_OIDC_AGENT_ACCOUNT),
-    oidc_token: str = typer.Option(None, '--oidc-access-token', help='OIDC access token', envvar=settings.envvar_OIDC_ACCESS_TOKEN),
     mytoken: str = typer.Option(None, '--mytoken', help='mytoken string', envvar=settings.envvar_AI4EOSC_MYTOKEN),
     mytoken_server: str = typer.Option(None, '--mytoken-server', help='mytoken server URL', envvar=settings.envvar_AI4EOSC_MYTOKEN_SERVER),
 ):
+    """
+    Print default deployment information.
+    :param module_name:
+    :param api_url:
+    :param auth_token:
+    :param oidc_account:
+    :param oidc_token:
+    :param mytoken:
+    :param mytoken_server:
+    :return:
+    """
     if auth_token is None:
-        auth_token = auth.get_access_token(oidc_token, oidc_account, mytoken, mytoken_server)
+        auth_token = auth.get_access_token(oidc_account, mytoken, mytoken_server)
     if auth_token is not None:
         auth_object = BearerToken(auth_token)
     else:
@@ -43,6 +53,12 @@ def api_info(
     api_version: str = typer.Option('1', help="API version to get info about"),
     api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL),
 ):
+    """
+    Print API information.
+    :param api_version:
+    :param api_url:
+    :return:
+    """
     response = get_api_version_info(api_url, 'v' + api_version)
     if response is None:
         print('No response')
@@ -56,6 +72,11 @@ def api_info(
 
 @app.command()
 def platform_info(api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL)):
+    """
+    Print platform information.
+    :param api_url:
+    :return:
+    """
     response = get_platform_info(api_url)
     if response is None:
         print('No response')

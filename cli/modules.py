@@ -17,6 +17,9 @@ def list_modules(
     not_tags: Optional[List[str]] = typer.Option(None, '--not-tags'),
     not_tags_any: Optional[List[str]] = typer.Option(None, '--not-tags-any'),
 ):
+    """
+    List existing modules, with filtering by tags.
+    """
     split_tags = []
     for tag in tags:
         split_tags.extend(tag.split(','))
@@ -40,6 +43,15 @@ def modules_summary(
     not_tags: Optional[List[str]] = typer.Option(None, '--not-tags'),
     not_tags_any: Optional[List[str]] = typer.Option(None, '--not-tags-any'),
 ):
+    """
+    Print summary of all existing modules, with optional filtering by tags.
+    :param api_url:
+    :param tags:
+    :param tags_any:
+    :param not_tags:
+    :param not_tags_any:
+    :return:
+    """
     split_tags = []
     for tag in tags:
         split_tags.extend(tag.split(','))
@@ -57,6 +69,11 @@ def modules_summary(
 
 @app.command()
 def tags(api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL)):
+    """
+    Print all existing tags.
+    :param api_url:
+    :return:
+    """
     cli_tags(api_url)
 
 
@@ -65,6 +82,12 @@ def show_module(
     module_name: str = typer.Option(None, help='module name to query'),
     api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL),
 ):
+    """
+    Print module information.
+    :param module_name:
+    :param api_url:
+    :return:
+    """
     cli_show_module(api_url, module_name)
 
 
@@ -74,6 +97,13 @@ def update_module(
     api_url: str = typer.Option(settings.AI4EOSC_PAPI_URL, help="AI4EOSC PAPI URL", envvar=settings.envvar_AI4EOSC_PAPI_URL),
     new_metadata: str = typer.Option(None, '--new-metadata', '-nm', help='name of JSON file with new metadata'),
 ):
+    """
+    Update module metadata.
+    :param module_name:
+    :param api_url:
+    :param new_metadata:
+    :return:
+    """
     cli_update_module(api_url, module_name, new_metadata)
 
 
