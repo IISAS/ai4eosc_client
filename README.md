@@ -1,8 +1,8 @@
 # AI4OS Command-line client - ai4os-client
 
-|                                  |                                                                                                                  |
-|----------------------------------|------------------------------------------------------------------------------------------------------------------|
-| ![](EN-Funded by the EU-POS.jpg) | This work is funded by European Union through the AI4EOSC project (Horizon Europe) under Grant number 101058593. |
+|                                                                                                                             |                                                                                                                  |
+|-----------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| <img src="https://ec.europa.eu/regional_policy/images/information-sources/logo-download-center/eu_funded_en.jpg" width=400> | This work is funded by European Union through the AI4EOSC project (Horizon Europe) under Grant number 101058593. |
 
 [![GitHub Super-Linter](https://github.com/IISAS/ai4eosc_client/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/marketplace/actions/super-linter)
 [![Tox](https://github.com/IISAS/ai4eosc_client/actions/workflows/tox.yml/badge.svg?branch=main)](https://tox.wiki/en/latest/)
